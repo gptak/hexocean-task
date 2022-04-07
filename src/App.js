@@ -12,54 +12,60 @@ export default function App() {
       <FormTemplate onSubmit={submit} validate={validate}>
         {(props) => (
           <>
-            <div>
-              <label>Dish name:</label>
-              <Input name="name" placeholder="e.g. pizza maragarita" />
-            </div>
-
-            <div>
-              <label>Preparation time:</label>
-              <Input name="preparation_time" type="time" step={2} />
-            </div>
-
-            <div>
-              <label>Dish type:</label>
-              <Select
-                name="type"
-                options={[
-                  "-- please choose an option --",
-                  "pizza",
-                  "soup",
-                  "sandwich",
-                ]}
-              />
-            </div>
-
+            <Input
+              name="name"
+              placeholder="e.g. pizza maragarita"
+              label="Diszh name :"
+            />
+            <Input
+              name="preparation_time"
+              type="time"
+              step={2}
+              label="Preparation time:"
+            />
+            <Select
+              name="type"
+              label="Dish type:"
+              options={[
+                "-- please choose an option --",
+                "pizza",
+                "soup",
+                "sandwich",
+              ]}
+            />
             <Condition when="type" is="pizza">
-              <div>
-                <label>Number of slices:</label>
-                <Input name="no_of_slices" type="number" min={1} />
-              </div>
-              <div>
-                <label>Diameter:</label>
-                <Input name="diameter" type="number" step={0.1} min={0.1} />
-              </div>
-            </Condition>
+              <Input
+                name="no_of_slices"
+                type="number"
+                min={1}
+                label="Slices:"
+              />
 
+              <Input
+                name="diameter"
+                type="number"
+                step={0.1}
+                min={0.1}
+                label="Diameter:"
+              />
+            </Condition>
             <Condition when="type" is="soup">
-              <label>Spiciness:</label>
               <Input
                 name="spiciness_scale"
                 type="number"
                 min={1}
                 max={10}
                 placeholder="1-10"
+                label="Spiciness:"
               />
             </Condition>
-
             <Condition when="type" is="sandwich">
-              <label>Slices of bread:</label>
-              <Input name="slices_of_bread" type="number" min={1} />
+              <Input
+                name="slices_of_bread"
+                type="number"
+                min={1}
+                label="Bread slices:"
+              />
             </Condition>
           </>
         )}

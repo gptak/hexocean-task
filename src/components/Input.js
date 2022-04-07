@@ -17,10 +17,10 @@ export function Input(props) {
   };
 
   return (
-    <>
+    <div>
       <label>{inputProps.label}</label>
       <input {...inputProps} />
       {(error || submitError) && touched && <span>{error || submitError}</span>}
-    </>
+    </div>
   );
 }

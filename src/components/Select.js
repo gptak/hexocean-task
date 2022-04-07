@@ -17,7 +17,7 @@ export function Select(props) {
   };
 
   return (
-    <>
+    <div>
       <label>{inputProps.label}</label>
       <select {...inputProps}>
         {inputProps.options.map((option) => (
@@ -26,6 +26,6 @@ export function Select(props) {
       </select>
 
       {(error || submitError) && touched && <span>{error || submitError}</span>}
-    </>
+    </div>
   );
 }
