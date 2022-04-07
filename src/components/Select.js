@@ -12,14 +12,17 @@ export function Select(props) {
 
   const inputProps = {
     ...props,
-    error: touched && error && true,
+    error: (touched && error) || "",
     ...input,
   };
 
   return (
     <div>
       <label>{inputProps.label}</label>
-      <select {...inputProps}>
+      <select value="" {...inputProps}>
+        <option value="" disabled>
+          -- please choose an option --
+        </option>
         {inputProps.options.map((option) => (
           <option key={option}>{option}</option>
         ))}

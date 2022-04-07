@@ -1,17 +1,25 @@
 import axios from "axios";
 
 const submit = async (values) => {
-  // changing strings to numbers
+  // changin string to numbers and removing of unnecessary values from request
   if (values.type === "pizza") {
     values.no_of_slices = parseInt(values.no_of_slices);
     values.diameter = parseFloat(values.diameter);
+    delete values.spiciness_scale;
+    delete values.slices_of_bread;
   } else if (values.type === "soup") {
     values.spiciness_scale = parseInt(values.spiciness_scale);
+    delete values.no_of_slices;
+    delete values.diameter;
+    delete values.slices_of_bread;
   } else if (values.type === "sandwich") {
     values.slices_of_bread = parseInt(values.slices_of_bread);
+    delete values.spiciness_scale;
+    delete values.diameter;
+    delete values.no_of_slices;
   }
 
-  // order sending
+  // request sending
   try {
     const response = await axios({
       method: "post",
@@ -24,7 +32,7 @@ const submit = async (values) => {
     console.log(response.data);
   } catch (error) {
     console.log(error.response.data);
-    return { ...error.response.data };
+    if (error.response.status === 400) return { ...error.response.data };
   }
 };
 

@@ -12,7 +12,7 @@ export function Input(props) {
 
   const inputProps = {
     ...props,
-    error: touched && error && true,
+    error: (touched && error) || "",
     ...input,
   };
 

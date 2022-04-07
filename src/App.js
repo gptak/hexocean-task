@@ -15,23 +15,18 @@ export default function App() {
             <Input
               name="name"
               placeholder="e.g. pizza maragarita"
-              label="Diszh name :"
+              label="Dish name :"
             />
             <Input
               name="preparation_time"
+              label="Preparation time:"
               type="time"
               step={2}
-              label="Preparation time:"
             />
             <Select
               name="type"
               label="Dish type:"
-              options={[
-                "-- please choose an option --",
-                "pizza",
-                "soup",
-                "sandwich",
-              ]}
+              options={["pizza", "soup", "sandwich"]}
             />
             <Condition when="type" is="pizza">
               <Input
@@ -40,7 +35,6 @@ export default function App() {
                 min={1}
                 label="Slices:"
               />
-
               <Input
                 name="diameter"
                 type="number"
