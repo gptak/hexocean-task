@@ -1,7 +1,18 @@
-import React from "react";
+import { useState } from "react";
+import { Select } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { useField } from "react-final-form";
+import { InputLabel } from "@mui/material";
+import { FormControl } from "@mui/material";
+import { FormHelperText } from "@mui/material";
 
-export function Select(props) {
+export function OptionSelect(props) {
+  const [option, setOption] = useState("");
+
+  const handleChange = (event) => {
+    setOption(event.target.value);
+  };
+
   const {
     input,
     meta: { error, touched, submitError },
@@ -12,22 +23,31 @@ export function Select(props) {
 
   const inputProps = {
     ...props,
-    error: (touched && error) || "",
+    error: touched && (error || submitError),
     ...input,
   };
 
   return (
     <div>
-      <label>{inputProps.label}</label>
-      <select value="" {...inputProps}>
-        <option value="" disabled>
-          -- please choose an option --
-        </option>
-        {inputProps.options.map((option) => (
-          <option key={option}>{option}</option>
-        ))}
-      </select>
-      {(error || submitError) && touched && <span>{error || submitError}</span>}
+      <FormControl
+        variant="filled"
+        helperText={error || submitError}
+        margin="normal"
+        sx={{ minWidth: 220 }}
+      >
+        {" "}
+        <InputLabel>{inputProps.label}</InputLabel>
+        <Select value={option} onChange={handleChange} {...inputProps}>
+          {inputProps.options.map((opt) => (
+            <MenuItem value={opt} key={opt}>
+              {opt}
+            </MenuItem>
+          ))}
+        </Select>
+        {(error || submitError) && touched && (
+          <FormHelperText>{error || submitError}</FormHelperText>
+        )}
+      </FormControl>
     </div>
   );
 }

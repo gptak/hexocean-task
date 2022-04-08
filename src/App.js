@@ -2,22 +2,19 @@ import { useState } from "react";
 import { Condition } from "./components/Condition";
 import { FormTemplate } from "./components/FormTemplate";
 import { Input } from "./components/Input";
-import { Select } from "./components/Select";
+import { OptionSelect } from "./components/Select";
 import validate from "./components/validate";
 import submit from "./components/submit";
 import Success from "./components/Success";
-import Error from "./components/Error";
 
 export default function App() {
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
 
   return (
     <div className="App">
       <FormTemplate
-        setShowError={setShowError}
         setShowSuccess={setShowSuccess}
-        onSubmit={(values) => submit(values, setShowSuccess, setShowError)}
+        onSubmit={(values, form) => submit(values, form, setShowSuccess)}
         validate={validate}
       >
         {(props) => (
@@ -25,32 +22,28 @@ export default function App() {
             <Input
               name="name"
               placeholder="e.g. pizza maragarita"
-              label="Dish name :"
+              label="Dish name"
             />
             <Input
               name="preparation_time"
-              label="Preparation time:"
-              type="time"
+              label="Preparation time"
+              type="number"
               step={2}
             />
-            <Select
+            <OptionSelect
               name="type"
-              label="Dish type:"
+              label="Dish type"
               options={["pizza", "soup", "sandwich"]}
             />
+
             <Condition when="type" is="pizza">
-              <Input
-                name="no_of_slices"
-                type="number"
-                min={1}
-                label="Slices:"
-              />
+              <Input name="no_of_slices" type="number" min={1} label="Slices" />
               <Input
                 name="diameter"
                 type="number"
                 step={0.1}
                 min={0.1}
-                label="Diameter:"
+                label="Diameter"
               />
             </Condition>
             <Condition when="type" is="soup">
@@ -60,7 +53,7 @@ export default function App() {
                 min={1}
                 max={10}
                 placeholder="1-10"
-                label="Spiciness:"
+                label="Spiciness"
               />
             </Condition>
             <Condition when="type" is="sandwich">
@@ -68,14 +61,13 @@ export default function App() {
                 name="slices_of_bread"
                 type="number"
                 min={1}
-                label="Bread slices:"
+                label="Bread slices"
               />
             </Condition>
           </>
         )}
       </FormTemplate>
       {showSuccess && <Success />}
-      {showError && <Error />}
     </div>
   );
 }

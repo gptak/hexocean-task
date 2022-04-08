@@ -1,5 +1,7 @@
 import React from "react";
 import { Form } from "react-final-form";
+import { Button } from "@mui/material";
+import { Stack } from "@mui/material";
 
 export function FormTemplate(props) {
   return (
@@ -7,33 +9,30 @@ export function FormTemplate(props) {
       onSubmit={props.onSubmit}
       validate={props.validate}
       render={(renderProps) => (
-        <form
-          onSubmit={(event) => {
-            renderProps.handleSubmit(event).then(() => {
-              renderProps.form.reset();
-            });
-          }}
-        >
+        <form onSubmit={renderProps.handleSubmit}>
           {props.children(renderProps)}
-          <div>
-            <button
+          <Stack spacing={2} direction="row">
+            <Button
+              margine="normal"
+              variant="outlined"
+              size="large"
               type="submit"
               disabled={renderProps.submitting || renderProps.pristine}
             >
               Submit
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              size="large"
+              variant="outlined"
               onClick={() => {
                 props.setShowSuccess(false);
-                props.setShowError(false);
                 renderProps.form.reset();
               }}
               disabled={renderProps.submitting || renderProps.pristine}
             >
               Reset
-            </button>
-          </div>
+            </Button>
+          </Stack>
         </form>
       )}
     />

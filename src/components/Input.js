@@ -1,3 +1,5 @@
+import { TextField } from "@mui/material";
+
 import React from "react";
 import { useField } from "react-final-form";
 
@@ -12,15 +14,18 @@ export function Input(props) {
 
   const inputProps = {
     ...props,
-    error: (touched && error) || "",
+    error: touched && (error || submitError),
     ...input,
   };
 
   return (
     <div>
-      <label>{inputProps.label}</label>
-      <input {...inputProps} />
-      {(error || submitError) && touched && <span>{error || submitError}</span>}
+      <TextField
+        {...inputProps}
+        margin="normal"
+        variant="filled"
+        helperText={error || submitError}
+      />
     </div>
   );
 }
