@@ -1,15 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import { Condition } from "./components/Condition";
-import { FormTemplate } from "./components/Form";
+import { FormTemplate } from "./components/FormTemplate";
 import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import validate from "./components/validate";
 import submit from "./components/submit";
+import Success from "./components/Success";
+import Error from "./components/Error";
 
 export default function App() {
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+
   return (
     <div className="App">
-      <FormTemplate onSubmit={submit} validate={validate}>
+      <FormTemplate
+        setShowError={setShowError}
+        setShowSuccess={setShowSuccess}
+        onSubmit={(values) => submit(values, setShowSuccess, setShowError)}
+        validate={validate}
+      >
         {(props) => (
           <>
             <Input
@@ -64,6 +74,8 @@ export default function App() {
           </>
         )}
       </FormTemplate>
+      {showSuccess && <Success />}
+      {showError && <Error />}
     </div>
   );
 }

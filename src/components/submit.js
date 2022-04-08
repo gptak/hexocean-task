@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const submit = async (values) => {
-  // changin string to numbers and removing of unnecessary values from request
+const submit = async (values, setShowSuccess, setShowError) => {
+  // changin strings to numbers and removing of unnecessary values from request
   if (values.type === "pizza") {
     values.no_of_slices = parseInt(values.no_of_slices);
     values.diameter = parseFloat(values.diameter);
@@ -21,7 +21,7 @@ const submit = async (values) => {
 
   // request sending
   try {
-    const response = await axios({
+    await axios({
       method: "post",
       url: "https://frosty-wood-6558.getsandbox.com:443/dishes",
       headers: {
@@ -29,11 +29,9 @@ const submit = async (values) => {
       },
       data: values,
     });
-    console.log(response.data);
-    
+    setShowSuccess(true);
   } catch (error) {
-    console.log(error.response.data);
-    if (error.response.status === 400) return { ...error.response.data };
+    return { ...error.response.data };
   }
 };
 

@@ -27,7 +27,6 @@ export function Select(props) {
           <option key={option}>{option}</option>
         ))}
       </select>
-
       {(error || submitError) && touched && <span>{error || submitError}</span>}
     </div>
   );

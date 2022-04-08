@@ -1,6 +1,6 @@
 const validate = (values) => {
   const errors = {};
-  console.log(values);
+
   //overall validation
   if (!values.name) {
     errors.name = "Required";

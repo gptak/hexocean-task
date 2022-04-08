@@ -10,7 +10,7 @@ export function FormTemplate(props) {
         <form
           onSubmit={(event) => {
             renderProps.handleSubmit(event).then(() => {
-              renderProps.form.restart();
+              renderProps.form.reset();
             });
           }}
         >
@@ -24,7 +24,11 @@ export function FormTemplate(props) {
             </button>
             <button
               type="button"
-              onClick={renderProps.form.reset}
+              onClick={() => {
+                props.setShowSuccess(false);
+                props.setShowError(false);
+                renderProps.form.reset();
+              }}
               disabled={renderProps.submitting || renderProps.pristine}
             >
               Reset
