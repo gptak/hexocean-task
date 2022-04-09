@@ -19,16 +19,13 @@ export default function App() {
       >
         {(props) => (
           <>
-            <Input
-              name="name"
-              placeholder="e.g. pizza maragarita"
-              label="Dish name"
-            />
+            <Input name="name" placeholder="e.g. pizza" label="Dish name" />
             <Input
               name="preparation_time"
               label="Preparation time"
-              type="number"
-              step={2}
+              type="time"
+              inputProps={{ step: 2 }}
+              InputLabelProps={{ shrink: true }}
             />
             <OptionSelect
               name="type"
@@ -37,21 +34,26 @@ export default function App() {
             />
 
             <Condition when="type" is="pizza">
-              <Input name="no_of_slices" type="number" min={1} label="Slices" />
+              <Input
+                name="no_of_slices"
+                type="number"
+                inputProps={{ min: 1 }}
+                label="Slices"
+              />
               <Input
                 name="diameter"
                 type="number"
                 step={0.1}
                 min={0.1}
                 label="Diameter"
+                inputProps={{ min: 0.1, step: 0.1 }}
               />
             </Condition>
             <Condition when="type" is="soup">
               <Input
                 name="spiciness_scale"
                 type="number"
-                min={1}
-                max={10}
+                inputProps={{ min: 1, max: 10 }}
                 placeholder="1-10"
                 label="Spiciness"
               />
@@ -60,14 +62,14 @@ export default function App() {
               <Input
                 name="slices_of_bread"
                 type="number"
-                min={1}
+                inputProps={{ min: 1 }}
                 label="Bread slices"
               />
             </Condition>
           </>
         )}
       </FormTemplate>
-      {showSuccess && <Success />}
+      <Success showSuccess={showSuccess} setShowSuccess={setShowSuccess} />
     </div>
   );
 }

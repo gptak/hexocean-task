@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const submit = async (values, form, setShowSuccess) => {
-  console.log(form);
   // changin strings to numbers and removing of unnecessary values from request
   if (values.type === "pizza") {
     values.no_of_slices = parseInt(values.no_of_slices);
@@ -33,6 +32,7 @@ const submit = async (values, form, setShowSuccess) => {
     form.restart();
     setShowSuccess(true);
   } catch (error) {
+    console.error(error);
     return { ...error.response.data };
   }
 };

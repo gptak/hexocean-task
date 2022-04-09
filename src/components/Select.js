@@ -23,7 +23,7 @@ export function OptionSelect(props) {
 
   const inputProps = {
     ...props,
-    error: touched && (error || submitError),
+    error: !!(touched && (error || submitError)),
     ...input,
   };
 
@@ -31,11 +31,8 @@ export function OptionSelect(props) {
     <div>
       <FormControl
         variant="filled"
-        helperText={error || submitError}
-        margin="normal"
-        sx={{ minWidth: 220 }}
+        sx={{ minWidth: 220, marginBottom: "1.8em" }}
       >
-        {" "}
         <InputLabel>{inputProps.label}</InputLabel>
         <Select value={option} onChange={handleChange} {...inputProps}>
           {inputProps.options.map((opt) => (
@@ -45,7 +42,9 @@ export function OptionSelect(props) {
           ))}
         </Select>
         {(error || submitError) && touched && (
-          <FormHelperText>{error || submitError}</FormHelperText>
+          <FormHelperText style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}>
+            {error || submitError}
+          </FormHelperText>
         )}
       </FormControl>
     </div>
