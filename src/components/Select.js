@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useField } from "react-final-form";
 import {
-  FormControl,
-  FormHelperText,
   MenuItem,
   Select,
   InputLabel,
 } from "@mui/material";
+import FormElement from "./FormElement";
 
 export default function OptionSelect(props) {
   const [option, setOption] = useState("");
@@ -30,27 +29,20 @@ export default function OptionSelect(props) {
   };
 
   return (
-    <div>
-      <FormControl
-        variant="filled"
-        sx={{ minWidth: 220, marginBottom: "1.8em" }}
+    <FormElement inputProps={inputProps}>
+      <InputLabel>{inputProps.label}</InputLabel>
+      <Select
+        style={{ width: "100%" }}
+        value={option}
+        onChange={handleChange}
+        {...inputProps}
       >
-        <InputLabel>{inputProps.label}</InputLabel>
-        <Select value={option} onChange={handleChange} {...inputProps}>
-          {inputProps.options.map((opt) => (
-            <MenuItem value={opt} key={opt}>
-              {opt}
-            </MenuItem>
-          ))}
-        </Select>
-        {(error || submitError) && touched && (
-          <FormHelperText
-            style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}
-          >
-            {error || submitError}
-          </FormHelperText>
-        )}
-      </FormControl>
-    </div>
+        {inputProps.options.map((opt) => (
+          <MenuItem value={opt} key={opt}>
+            {opt}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormElement>
   );
 }

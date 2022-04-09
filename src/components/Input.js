@@ -1,6 +1,7 @@
 import React from "react";
 import { useField } from "react-final-form";
-import { FormControl, FormHelperText, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import FormElement from "./FormElement";
 
 export default function Input(props) {
   const {
@@ -11,24 +12,21 @@ export default function Input(props) {
     validate: props.validate,
   });
 
+  const errorMsg = error;
+  const submitErrorMsg = submitError;
+
   const inputProps = {
     ...props,
     error: !!(touched && (error || submitError)),
+    errorMsg,
+    submitErrorMsg,
     ...input,
   };
 
+
   return (
-    <div>
-      <FormControl sx={{ minWidth: 220, marginBottom: "1.8em" }}>
-        <TextField {...inputProps} variant="filled" style={{ minWidth: 220 }} />
-        {(error || submitError) && touched && (
-          <FormHelperText
-            style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}
-          >
-            {error || submitError}
-          </FormHelperText>
-        )}
-      </FormControl>
-    </div>
+    <FormElement {...inputProps}>
+      <TextField {...inputProps} variant="filled" />
+    </FormElement>
   );
 }

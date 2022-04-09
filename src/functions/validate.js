@@ -19,6 +19,9 @@ const validate = (values) => {
     if (!values.diameter) {
       errors.diameter = "Required";
     }
+    if(values.diameter<=0){
+      errors.diameter = "Required";
+    }
   }
 
   //soup detail validation

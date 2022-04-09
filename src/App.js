@@ -57,6 +57,11 @@ export default function App() {
                 placeholder="1-10"
                 label="Spiciness"
               />
+              <OptionSelect
+               name="spiciness_scale"
+              label="Dish type"
+              options={["pizza", "soup", "sandwich"]}
+            />
             </Condition>
             <Condition when="type" is="sandwich">
               <Input
