@@ -12,21 +12,27 @@ export default function Input(props) {
     validate: props.validate,
   });
 
-  const errorMsg = error;
-  const submitErrorMsg = submitError;
+  const errorMsgs = { errorMsg: error, submitErrorMsg: submitError };
 
   const inputProps = {
     ...props,
     error: !!(touched && (error || submitError)),
-    errorMsg,
-    submitErrorMsg,
     ...input,
   };
 
-
   return (
-    <FormElement {...inputProps}>
-      <TextField {...inputProps} variant="filled" />
+    <FormElement {...inputProps} {...errorMsgs}>
+      <TextField
+        {...inputProps}
+        variant="filled"
+        // inputProps={{
+        //   autoComplete: "new-password",
+        //   form: {
+        //     autoComplete: "off",
+        //   },
+        // }}
+        style={{ width: "100%" }}
+      />
     </FormElement>
   );
 }

@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useField } from "react-final-form";
-import {
-  MenuItem,
-  Select,
-  InputLabel,
-} from "@mui/material";
+import { MenuItem, Select, InputLabel } from "@mui/material";
 import FormElement from "./FormElement";
 
 export default function OptionSelect(props) {
@@ -22,6 +18,8 @@ export default function OptionSelect(props) {
     validate: props.validate,
   });
 
+  const errorMsgs = { errorMsg: error, submitErrorMsg: submitError };
+
   const inputProps = {
     ...props,
     error: !!(touched && (error || submitError)),
@@ -29,7 +27,7 @@ export default function OptionSelect(props) {
   };
 
   return (
-    <FormElement inputProps={inputProps}>
+    <FormElement {...inputProps} {...errorMsgs}>
       <InputLabel>{inputProps.label}</InputLabel>
       <Select
         style={{ width: "100%" }}

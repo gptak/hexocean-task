@@ -37,31 +37,33 @@ export default function App() {
               <Input
                 name="no_of_slices"
                 type="number"
-                inputProps={{ min: 1 }}
+                inputProps={{
+                  min: 1,
+                  form: {
+                    autoComplete: "off",
+                  },
+                }}
                 label="Slices"
               />
               <Input
                 name="diameter"
                 type="number"
-                step={0.1}
-                min={0.1}
                 label="Diameter"
-                inputProps={{ min: 0.1, step: 0.1 }}
+                inputProps={{
+                  min: 1,
+                  step: "any",
+                  form: {
+                    autoComplete: "off",
+                  },
+                }}
               />
             </Condition>
             <Condition when="type" is="soup">
-              <Input
-                name="spiciness_scale"
-                type="number"
-                inputProps={{ min: 1, max: 10 }}
-                placeholder="1-10"
-                label="Spiciness"
-              />
               <OptionSelect
-               name="spiciness_scale"
-              label="Dish type"
-              options={["pizza", "soup", "sandwich"]}
-            />
+                name="spiciness_scale"
+                label="Spiciness"
+                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+              />
             </Condition>
             <Condition when="type" is="sandwich">
               <Input

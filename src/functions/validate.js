@@ -1,40 +1,62 @@
-const validate = (values) => {
+const validate = ({
+  type,
+  slices_of_bread,
+  no_of_slices,
+  preparation_time,
+  diameter,
+  name,
+  spiciness_scale,
+}) => {
   const errors = {};
+
   //overall validation
-  if (!values.name) {
+  if (!name) {
     errors.name = "Required";
   }
-  if (!values.preparation_time) {
+  if (!preparation_time) {
     errors.preparation_time = "Required";
   }
-  if (!values.type) {
+  if (!type) {
     errors.type = "Required";
   }
 
   //pizza details validation
-  if (values.type === "pizza") {
-    if (!values.no_of_slices) {
+  if (type === "pizza") {
+    if (!no_of_slices) {
       errors.no_of_slices = "Required";
     }
-    if (!values.diameter) {
+    if (no_of_slices % 1 !== 0) {
+      errors.no_of_slices = "Must be a natural number";
+    }
+    if (no_of_slices <= 0) {
+      errors.no_of_slices = "Must be a positivenumber";
+    }
+
+    if (!diameter) {
       errors.diameter = "Required";
     }
-    if(values.diameter<=0){
-      errors.diameter = "Required";
+    if (diameter <= 0) {
+      errors.diameter = "Must be a positive number";
     }
   }
 
   //soup detail validation
-  else if (values.type === "soup") {
-    if (!values.spiciness_scale) {
+  else if (type === "soup") {
+    if (!spiciness_scale) {
       errors.spiciness_scale = "Required";
     }
   }
 
   //sandwich detail validation
-  else if (values.type === "sandwich") {
-    if (!values.slices_of_bread) {
+  else if (type === "sandwich") {
+    if (!slices_of_bread) {
       errors.slices_of_bread = "Required";
+    }
+    if (slices_of_bread % 1 !== 0 || slices_of_bread <= 0) {
+      errors.slices_of_bread = "Must be a natural number";
+    }
+    if (slices_of_bread <= 0) {
+      errors.slices_of_bread = "Must be a positive number";
     }
   }
 

@@ -17,7 +17,7 @@ export default function FormTemplate(props) {
           style={{ minHeight: "80vh" }}
         >
           <Grid item xs={3}>
-            <form onSubmit={renderProps.handleSubmit}>
+            <form autoComplete="off" onSubmit={renderProps.handleSubmit}>
               {props.children(renderProps)}
               <Stack spacing={2} direction="row" justifyContent="center">
                 <LoadingButton
