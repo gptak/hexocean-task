@@ -22,17 +22,7 @@ export default function Input(props) {
 
   return (
     <FormElement {...inputProps} {...errorMsgs}>
-      <TextField
-        {...inputProps}
-        variant="filled"
-        // inputProps={{
-        //   autoComplete: "new-password",
-        //   form: {
-        //     autoComplete: "off",
-        //   },
-        // }}
-        style={{ width: "100%" }}
-      />
+      <TextField {...inputProps} variant="filled" style={{ width: "100%" }} />
     </FormElement>
   );
 }
