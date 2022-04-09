@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Condition } from "./components/Condition";
-import { FormTemplate } from "./components/FormTemplate";
-import { Input } from "./components/Input";
-import { OptionSelect } from "./components/Select";
-import validate from "./components/validate";
-import submit from "./components/submit";
+import Condition from "./components/Condition";
+import FormTemplate from "./components/FormTemplate";
+import Input from "./components/Input";
+import OptionSelect from "./components/Select";
+import validate from "./functions/validate";
+import submit from "./functions/submit";
 import Success from "./components/Success";
 
 export default function App() {

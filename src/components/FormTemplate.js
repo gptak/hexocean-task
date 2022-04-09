@@ -1,11 +1,9 @@
 import React from "react";
 import { Form } from "react-final-form";
-import { Button } from "@mui/material";
+import { Button, Grid, Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Stack } from "@mui/material";
-import { Grid } from "@mui/material";
 
-export function FormTemplate(props) {
+export default function FormTemplate(props) {
   return (
     <Form
       onSubmit={props.onSubmit}

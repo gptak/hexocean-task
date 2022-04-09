@@ -1,11 +1,8 @@
-import { TextField } from "@mui/material";
-import { FormControl } from "@mui/material";
-import { FormHelperText } from "@mui/material";
-
 import React from "react";
 import { useField } from "react-final-form";
+import { FormControl, FormHelperText, TextField } from "@mui/material";
 
-export function Input(props) {
+export default function Input(props) {
   const {
     input,
     meta: { error, touched, submitError },

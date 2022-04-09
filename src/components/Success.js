@@ -1,6 +1,4 @@
-import { Modal } from "@mui/material";
-import { Box } from "@mui/material";
-import { Typography } from "@mui/material";
+import { Modal, Box, Typography } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -13,7 +11,7 @@ const style = {
   p: 4,
 };
 
-function Success({ showSuccess, setShowSuccess }) {
+export default function Success({ showSuccess, setShowSuccess }) {
   const handleClose = () => {
     setShowSuccess(false);
   };
@@ -27,5 +25,3 @@ function Success({ showSuccess, setShowSuccess }) {
     </Modal>
   );
 }
-
-export default Success;

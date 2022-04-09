@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Select } from "@mui/material";
-import { MenuItem } from "@mui/material";
 import { useField } from "react-final-form";
-import { InputLabel } from "@mui/material";
-import { FormControl } from "@mui/material";
-import { FormHelperText } from "@mui/material";
+import {
+  FormControl,
+  FormHelperText,
+  MenuItem,
+  Select,
+  InputLabel,
+} from "@mui/material";
 
-export function OptionSelect(props) {
+export default function OptionSelect(props) {
   const [option, setOption] = useState("");
 
   const handleChange = (event) => {
@@ -42,7 +44,9 @@ export function OptionSelect(props) {
           ))}
         </Select>
         {(error || submitError) && touched && (
-          <FormHelperText style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}>
+          <FormHelperText
+            style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}
+          >
             {error || submitError}
           </FormHelperText>
         )}
