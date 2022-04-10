@@ -8,7 +8,6 @@ const submit = async (values, form, setShowSuccess) => {
     delete values.spiciness_scale;
     delete values.slices_of_bread;
   } else if (values.type === "soup") {
-    values.spiciness_scale = parseInt(values.spiciness_scale);
     delete values.no_of_slices;
     delete values.diameter;
     delete values.slices_of_bread;
@@ -18,8 +17,6 @@ const submit = async (values, form, setShowSuccess) => {
     delete values.diameter;
     delete values.no_of_slices;
   }
-
-  
 
   // request sending
   try {
