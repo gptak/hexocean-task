@@ -10,6 +10,7 @@ export default function NumberSlider({
   max,
   label,
   step,
+  valueLabelDisplay,
   initialValue,
   validate,
 }) {
@@ -32,6 +33,7 @@ export default function NumberSlider({
     max,
     label,
     step,
+    valueLabelDisplay,
     validate,
     error: error || submitError,
     value,
