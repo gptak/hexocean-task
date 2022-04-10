@@ -8,6 +8,7 @@ const validate = ({
   spiciness_scale,
 }) => {
   const errors = {};
+
   //overall validation
   if (!name) {
     errors.name = "Required";

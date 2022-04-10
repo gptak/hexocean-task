@@ -3,12 +3,12 @@ import { Form } from "react-final-form";
 import { Grid } from "@mui/material";
 import Condition from "./components/Condition";
 import Input from "./components/Input";
-import OptionSelect from "./components/Select";
+import OptionSelect from "./components/OptionSelect";
 import validate from "./functions/validate";
 import submit from "./functions/submit";
 import Success from "./components/Success";
 import Buttons from "./components/Buttons";
-
+import NumberSlider from "./components/NumberSlider";
 
 export default function App() {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -16,6 +16,7 @@ export default function App() {
   return (
     <div className="App">
       <Form
+        initialValues={{ spiciness_scale: 1 }}
         onSubmit={(values, form) => submit(values, form, setShowSuccess)}
         validate={validate}
         render={({ handleSubmit, submitting, pristine, form }) => (
@@ -69,11 +70,15 @@ export default function App() {
                 </Condition>
 
                 <Condition when="type" is="soup">
-                  <OptionSelect
+                  <NumberSlider
                     name="spiciness_scale"
+                    step={1}
+                    min={1}
+                    max={10}
+                    marks
+                    valueLabelDisplay="auto"
                     label="Spiciness"
-                    options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                  />
+                  ></NumberSlider>
                 </Condition>
 
                 <Condition when="type" is="sandwich">

@@ -1,12 +1,12 @@
 import React from "react";
 import { useField } from "react-final-form";
-import { TextField } from "@mui/material";
+import { Slider, Typography } from "@mui/material";
 import FormElement from "./FormElement";
 
-export default function Input(props) {
+export default function NumberSlider(props) {
   const {
     input,
-    meta: { error, touched, submitError },
+    meta: { error, submitError },
   } = useField(props.name, {
     initialValue: props.initialValue,
     validate: props.validate,
@@ -16,13 +16,16 @@ export default function Input(props) {
 
   const inputProps = {
     ...props,
-    error: !!(touched && (error || submitError)),
+    error: error || submitError,
     ...input,
   };
 
   return (
     <FormElement {...inputProps} {...errorMsgs}>
-      <TextField {...inputProps} style={{ width: "100%" }} />
+      <Typography style={{ marginLeft: "10px", marginBottom: "10px" }}>
+        {props.label}
+      </Typography>
+      <Slider {...inputProps} style={{ width: "90%", marginLeft: "5%" }} />
     </FormElement>
   );
 }

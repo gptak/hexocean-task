@@ -8,13 +8,12 @@ export default function FormElement({
 }) {
   return (
     <FormControl
-      variant="filled"
-      sx={{ display: "block", minWidth: 220, marginBottom: "1.8em" }}
+      sx={{ display: "block", minWidth: 220, marginBottom: "2.1em" }}
     >
       {children}
       {error && (
         <FormHelperText
-          style={{ position: "absolute", bottom: "-1.8em", color: "#d32f2f" }}
+          style={{ position: "absolute", bottom: "-1.6em", color: "#d32f2f" }}
         >
           {errorMsg || submitErrorMsg}
         </FormHelperText>
