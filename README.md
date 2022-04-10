@@ -1,6 +1,6 @@
 ## Live Preview
 
-Open []
+Open [https://hexocean-task.herokuapp.com/]
 
 ## Available Scripts
 
