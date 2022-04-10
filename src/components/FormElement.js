@@ -2,8 +2,8 @@ import { FormControl, FormHelperText } from "@mui/material";
 
 export default function FormElement({
   children,
+  isErrorVisible,
   errorMsg,
-  error,
   submitErrorMsg,
 }) {
   return (
@@ -11,7 +11,7 @@ export default function FormElement({
       sx={{ display: "block", minWidth: 220, marginBottom: "2.1em" }}
     >
       {children}
-      {error && (
+      {isErrorVisible && (
         <FormHelperText
           style={{ position: "absolute", bottom: "-1.6em", color: "#d32f2f" }}
         >

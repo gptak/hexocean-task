@@ -3,29 +3,51 @@ import { useField } from "react-final-form";
 import { Slider, Typography } from "@mui/material";
 import FormElement from "./FormElement";
 
-export default function NumberSlider(props) {
+export default function NumberSlider({
+  name,
+  marks,
+  min,
+  max,
+  label,
+  step,
+  initialValue,
+  validate,
+}) {
   const {
-    input,
+    input: { value, onChange },
     meta: { error, submitError },
-  } = useField(props.name, {
-    initialValue: props.initialValue,
-    validate: props.validate,
+  } = useField(name, {
+    initialValue: initialValue,
+    validate: validate,
   });
 
-  const errorMsgs = { errorMsg: error, submitErrorMsg: submitError };
+  const errorMsg = error;
+  const submitErrorMsg = submitError;
+  const isErrorVisible = !!(error || submitError);
 
-  const inputProps = {
-    ...props,
+  const properties = {
+    name,
+    marks,
+    min,
+    max,
+    label,
+    step,
+    validate,
     error: error || submitError,
-    ...input,
+    value,
+    onChange,
   };
 
   return (
-    <FormElement {...inputProps} {...errorMsgs}>
+    <FormElement
+      isErrorVisible={isErrorVisible}
+      errorMsg={errorMsg}
+      submitErrorMsg={submitErrorMsg}
+    >
       <Typography style={{ marginLeft: "10px", marginBottom: "10px" }}>
-        {props.label}
+        {label}
       </Typography>
-      <Slider {...inputProps} style={{ width: "90%", marginLeft: "5%" }} />
+      <Slider {...properties} style={{ width: "90%", marginLeft: "5%" }} />
     </FormElement>
   );
 }

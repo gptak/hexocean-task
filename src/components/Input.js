@@ -3,26 +3,47 @@ import { useField } from "react-final-form";
 import { TextField } from "@mui/material";
 import FormElement from "./FormElement";
 
-export default function Input(props) {
+export default function Input({
+  name,
+  label,
+  placeholder,
+  type,
+  inputProps,
+  InputLabelProps,
+  initialValue,
+  validate,
+}) {
   const {
-    input,
-    meta: { error, touched, submitError },
-  } = useField(props.name, {
-    initialValue: props.initialValue,
-    validate: props.validate,
+    input: { value, onChange },
+    meta: { touched, error, submitError },
+  } = useField(name, {
+    initialValue: initialValue,
+    validate: validate,
   });
 
-  const errorMsgs = { errorMsg: error, submitErrorMsg: submitError };
+  const errorMsg = error;
+  const submitErrorMsg = submitError;
+  const isErrorVisible = !!(touched && (error || submitError));
 
-  const inputProps = {
-    ...props,
-    error: !!(touched && (error || submitError)),
-    ...input,
+  const properties = {
+    name,
+    label,
+    placeholder,
+    type,
+    inputProps,
+    InputLabelProps,
+    error: isErrorVisible,
+    value,
+    onChange,
   };
 
   return (
-    <FormElement {...inputProps} {...errorMsgs}>
-      <TextField {...inputProps} style={{ width: "100%" }} />
+    <FormElement
+      isErrorVisible={isErrorVisible}
+      errorMsg={errorMsg}
+      submitErrorMsg={submitErrorMsg}
+    >
+      <TextField {...properties} style={{ width: "100%" }} />
     </FormElement>
   );
 }

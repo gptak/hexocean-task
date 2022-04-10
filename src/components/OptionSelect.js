@@ -3,7 +3,13 @@ import { useField } from "react-final-form";
 import { MenuItem, Select, InputLabel } from "@mui/material";
 import FormElement from "./FormElement";
 
-export default function OptionSelect(props) {
+export default function OptionSelect({
+  label,
+  name,
+  options,
+  initialValue,
+  validate,
+}) {
   const [option, setOption] = useState("");
 
   const handleChange = (event) => {
@@ -11,31 +17,40 @@ export default function OptionSelect(props) {
   };
 
   const {
-    input,
+    input: { value, onChange },
     meta: { error, touched, submitError },
-  } = useField(props.name, {
-    initialValue: props.initialValue,
-    validate: props.validate,
+  } = useField(name, {
+    initialValue: initialValue,
+    validate: validate,
   });
 
-  const errorMsgs = { errorMsg: error, submitErrorMsg: submitError };
+  const errorMsg = error;
+  const submitErrorMsg = submitError;
+  const isErrorVisible = !!(touched && (error || submitError));
 
-  const inputProps = {
-    ...props,
-    error: !!(touched && (error || submitError)),
-    ...input,
+  const properties = {
+    label,
+    name,
+    options,
+    error: isErrorVisible,
+    value,
+    onChange,
   };
 
   return (
-    <FormElement {...inputProps} {...errorMsgs}>
-      <InputLabel>{inputProps.label}</InputLabel>
+    <FormElement
+      isErrorVisible={isErrorVisible}
+      errorMsg={errorMsg}
+      submitErrorMsg={submitErrorMsg}
+    >
+      <InputLabel>{label}</InputLabel>
       <Select
         style={{ width: "100%" }}
         value={option}
         onChange={handleChange}
-        {...inputProps}
+        {...properties}
       >
-        {inputProps.options.map((opt) => (
+        {options.map((opt) => (
           <MenuItem value={opt} key={opt}>
             {opt}
           </MenuItem>

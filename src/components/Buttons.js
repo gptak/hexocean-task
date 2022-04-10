@@ -1,9 +1,10 @@
-import { useForm } from "react-final-form";
+import { useForm, useFormState } from "react-final-form";
 import { Button, Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 export default function Buttons() {
-  const { submitting, pristine, reset } = useForm();
+  const { submitting, pristine } = useFormState();
+  const { reset } = useForm();
 
   return (
     <Stack spacing={2} direction="row" justifyContent="center">

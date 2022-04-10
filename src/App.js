@@ -16,10 +16,18 @@ export default function App() {
   return (
     <div className="App">
       <Form
-        initialValues={{ spiciness_scale: 1 }}
+        initialValues={{
+          name: "",
+          preparation_time: "00:00:00",
+          type: "",
+          spiciness_scale: 1,
+          no_of_slices: "",
+          diameter: "",
+          slices_of_bread: "",
+        }}
         onSubmit={(values, form) => submit(values, form, setShowSuccess)}
         validate={validate}
-        render={({ handleSubmit, submitting, pristine, form }) => (
+        render={({ handleSubmit }) => (
           <Grid
             container
             direction="column"

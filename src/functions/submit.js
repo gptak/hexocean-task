@@ -2,20 +2,20 @@ import axios from "axios";
 
 const submit = async (values, form, setShowSuccess) => {
   // changin strings to numbers and removing of unnecessary values from request
+
+  const requestBody = {
+    name: values.name,
+    preparation_time: values.preparation_time,
+    type: values.type,
+  };
+
   if (values.type === "pizza") {
-    values.no_of_slices = parseInt(values.no_of_slices);
-    values.diameter = parseFloat(values.diameter);
-    delete values.spiciness_scale;
-    delete values.slices_of_bread;
+    requestBody.no_of_slices = parseInt(values.no_of_slices);
+    requestBody.diameter = parseFloat(values.diameter);
   } else if (values.type === "soup") {
-    delete values.no_of_slices;
-    delete values.diameter;
-    delete values.slices_of_bread;
+    requestBody.spiciness_scale = values.spiciness_scale;
   } else if (values.type === "sandwich") {
-    values.slices_of_bread = parseInt(values.slices_of_bread);
-    delete values.spiciness_scale;
-    delete values.diameter;
-    delete values.no_of_slices;
+    requestBody.slices_of_bread = parseInt(values.slices_of_bread);
   }
 
   // request sending
@@ -26,7 +26,7 @@ const submit = async (values, form, setShowSuccess) => {
       headers: {
         "content-type": "application/json",
       },
-      data: values,
+      data: requestBody,
     });
     form.restart();
     setShowSuccess(true);

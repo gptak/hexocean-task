@@ -9,7 +9,8 @@ const style = {
   border: "2px solid #000",
   borderRadius: "10px",
   boxShadow: 24,
-  p: 4,
+  padding: 10,
+  fontWeight: 700,
 };
 
 export default function Success({ showSuccess, setShowSuccess }) {
@@ -22,7 +23,7 @@ export default function Success({ showSuccess, setShowSuccess }) {
         <Typography
           component="h2"
           textAlign="center"
-          style={{ fontWeight: 700 }}
+          style={{ fontSize: "1.5rem", fontWeight: 700 }}
         >
           SUCCESS
         </Typography>
